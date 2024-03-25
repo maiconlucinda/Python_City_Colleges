@@ -90,3 +90,40 @@ for day in range(1, len(daily_temperatures)):
         max_temp_up_to_day = max(max_temp_up_to_day, daily_temperatures[day])
 
 print("Days where temperature was hotter than any of the previous days:", hotter_than_previous_days)
+
+
+
+
+
+
+
+#2)
+#Now generate another list for rainfall values between 0mm and 10mm for a month (30 days).
+#Imagine these are the same 30 days as the daily temperatures list. For example, one day could have a temperature of 11°C and a rainfall of 3mm.
+
+
+daily_rainfall = [random.randint(0, 10) for _ in range(30)]
+
+#Bad days
+bad_days_count = 0
+for rain, temp in zip(daily_rainfall,daily_temperatures):
+    if rain > 3 and temp < 10:
+            bad_days_count = bad_days_count + 1
+
+print("Bad Days Count", bad_days_count)
+
+#Average Days
+average_days_count = 0
+for rain, temp in zip(daily_rainfall,daily_temperatures):
+    if (rain > 1 and rain < 5) and (temp > 10 and temp < 18):
+            average_days_count = average_days_count + 1
+
+print("Average Days Count", average_days_count)
+
+#Good days
+good_days_count = 0
+for rain, temp in zip(daily_rainfall,daily_temperatures):
+    if rain < 2 and temp > 18:
+            good_days_count = good_days_count + 1
+
+print("Good Days Count", good_days_count)
