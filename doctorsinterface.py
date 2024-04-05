@@ -22,6 +22,8 @@ while True:
     patient_data = patients.get(patient_id)
 
 
+
+
     #Patients name, age and gender.
     #The patient's diagnosis.
     #Medications and allergies and the number of Medications and number of allergies.
@@ -32,6 +34,16 @@ while True:
     patient_allergies = patient_data["allergies"]
     number_of_medications = len(patient_data["medications"])
     number_of_allergies = len(patient_data["allergies"])
+
+    print(f"The Patient's name: {patient_name}")
+    print(f"The Patient's age: {patient_age}")
+    print(f"The Patient's gender: {patient_gender}")
+    print(f"The Patient's diagnosis: {patient_diagnosis}")
+    print(f"The Patient's allergies: {patient_allergies}")
+    print(f"Patient's number of medications: {number_of_medications}")
+    print(f"Patient's number of allergies: {number_of_allergies}")
+
+
 
 
     #The patients average blood pressure.
@@ -48,7 +60,7 @@ while True:
 
 
     # Whether the patients average blood pressure is High, Normal or Low
-    blood_pressure_category = ""
+    blood_pressure_category = "None"
     if systolic > 125 or diastolic > 85:
         blood_pressure_category = "High"
     elif systolic > 115 or diastolic > 75:
@@ -56,8 +68,11 @@ while True:
     elif systolic < 115 and diastolic < 75:
         blood_pressure_category = "Low"
     else:
-        print("There is something wrong with the data, try again")
-        exit()
+        print("There might be something wrong with the data")
+
+    print(f"The patient's average blood pressure is: {blood_pressure_category}")   
+
+
 
 
     # The time difference between the patients last checkup and next appointment.
@@ -68,22 +83,39 @@ while True:
         date1 = datetime.strptime(patient_data['last_checkup_date'], '%Y-%m-%d')
         date2 = datetime.strptime(patient_data['next_appointment_date'],'%Y-%m-%d')
         time_difference = (date2-date1).days
-        doctor_notifications.append(f"Patient {patient_id}: There are {time_difference} days from the last appointment to the next appointment")
+        print(f"Patient {patient_id}: There are {time_difference} days from the last appointment to the next appointment")
 
 
 
 
     # Ask the doctor for a medication and then add medication to the patient's medication list.
-        
+    medication_to_add = input("Please, enter the medication's name, if there is no medication to be prescribed, enter 'None': ")  
+   
+    for allergies in patient_data["allergies"]:
+
+        if allergies == medication_to_add:
+            print(f"The Patient {patient_id} is allergic to {medication_to_add}.")
+        else:
+            medication_exists = False
+            if medication_to_add == "None":
+                medication_exists = None
+            else:
+                for medication in patient_data["medications"]:
+                    if medication == medication_to_add:
+                        medication_exists = True
+
+            if medication_exists == False:
+                patient_data["medications"].append(medication_to_add)
 
 
 
 
     # Ask the doctor for a medication and then remove medication from the patient's medication list.
+    medication_remove = input("Please, enter the medication to be remeved from the patient's medication list: ")
 
-
-
-
-
-
-    print(patient_name, patient_age, patient_gender, patient_diagnosis, patient_allergies, number_of_medications, number_of_allergies)
+    medication_exists_remove = None
+    index = -1
+    for medication in patient_data["medications"]:
+        index += 1
+        if medication == medication_remove:
+            patient_data["medications"].pop(index)
