@@ -55,7 +55,9 @@ while True:
         systolic += values[0]
         diastolic += values[1]
 
-    patient_average_blood_pressure = f"{systolic / index}/{diastolic / index}"
+    systolic = systolic / index
+    diastolic = diastolic / index
+    patient_average_blood_pressure = f"{systolic}/{diastolic}"
 
 
 
@@ -76,9 +78,8 @@ while True:
 
 
     # The time difference between the patients last checkup and next appointment.
-    doctor_notifications = []
     if patient_data["next_appointment_date"] == "No-Date":
-        doctor_notifications.append(f"The Patient {patient_id} doesn't have an upcoming appointment.")
+        print(f"The Patient {patient_id} doesn't have an upcoming appointment.")
     else:
         date1 = datetime.strptime(patient_data['last_checkup_date'], '%Y-%m-%d')
         date2 = datetime.strptime(patient_data['next_appointment_date'],'%Y-%m-%d')
