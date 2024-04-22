@@ -1,0 +1,34 @@
+
+# PART 1
+
+class BankAccount:
+
+    def __init__(self, account_holder, pin, balance=0):
+        self.account_holder = account_holder
+        self.ping = pin
+        self.balance = balance
+        self.overdraft_status = self.set_overdraft_status()
+
+
+
+    def deposit(self, amount):
+        if amount > 0:
+             self.balance = amount
+        
+        self.overdraft_status = self.set_overdraft_status()
+
+
+
+    def withdraw(self, amount):
+        if amount > 0 and amount < self.balance:
+            self.balance - amount
+        
+
+
+    def set_overdraft_status(self):
+        if self.balance < 0:
+            return True
+        else:
+            return False
+        
+

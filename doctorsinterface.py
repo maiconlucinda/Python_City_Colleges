@@ -12,6 +12,8 @@ while True:
     if patient_id == "Exit":
         exit()
 
+
+
     # Testing if the ID exists
     while patients.get(patient_id) == None:   
         print("This ID does not exist, try again")
