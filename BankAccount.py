@@ -13,15 +13,17 @@ class BankAccount:
 
     def deposit(self, amount):
         if amount > 0:
-            self.balance = amount
+            self.balance += amount
             self.overdraft_status = self.set_overdraft_status()
 
 
 
     def withdraw(self, amount):
         if amount > 0 and amount < self.balance:
-            self.balance = self.balance - amount
+            self.balance -= amount
             self.overdraft_status = self.set_overdraft_status()   
+        
+            
         
 
 
