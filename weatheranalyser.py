@@ -4,7 +4,7 @@ print(daily_temperatures)
 
 #Using this list of daily temperatures, write separate for-loops to do the following. You can use the enumerate method in the for-loop statement to keep track of the days.
 
-# • Find the day with the lowest temperature.
+# •  Find the day with the lowest temperature.
 min_temperature = float('inf')
 
 for day, temperature in enumerate(daily_temperatures, start = 1):
